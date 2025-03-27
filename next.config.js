@@ -1,11 +1,28 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
+// next.config.js
+// Remove appDir from experimental
+module.exports = {
   images: {
-    domains: ['media.graphassets.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media.graphassets.com',
+      },
+    ],
   },
+  // Remove experimental: { appDir: true } if present
+}
+
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media.graphassets.com',
+      },
+      // Add other domains if needed
+    ],
+  },
+  // ... rest of your config
 }
 
 module.exports = nextConfig

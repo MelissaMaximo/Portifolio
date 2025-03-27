@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "fix-all": "npm run format && npm run lint"
   },
   "dependencies": {
     "@graphcms/rich-text-react-renderer": "0.6.1",
@@ -33,5 +35,16 @@
     "tailwindcss": "3.3.1",
     "typescript": "5.0.4",
     "zod": "3.21.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "next/core-web-vitals",
+      "@rocketseat/eslint-config"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "none"
   }
 }
