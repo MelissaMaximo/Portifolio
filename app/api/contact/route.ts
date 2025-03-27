@@ -21,9 +21,11 @@ export async function POST(req: Request) {
       Mensagem: ${message}`
     }
 
-    // Envia para o Discord
+    // URL do Webhook do Discord (substitua pelo seu URL real)
     const webhookUrl =
       'https://discord.com/api/webhooks/1354675483727630397/kHdfAXLsDpVsbCRp7VA84lngHpK8c48cgepYPml-zUwdO8GYrfBQms18nlUYPdgJcu1g'
+
+    // Envia a mensagem para o Discord
     const discordResponse = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
