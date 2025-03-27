@@ -20,7 +20,7 @@ export const ProjectDetails = () => {
             'url(/images/hero-bg.png), url(https://media.graphassets.com/7Kic5YHkQcmGrN57MSXw)',
           backgroundRepeat: 'no-repeat, no-repeat',
           backgroundPosition: 'center, center',
-          backgroundSize: 'cover, cover',
+          backgroundSize: 'cover, cover'
         }}
         initial={{ opacity: 0, scale: 1.3 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -36,9 +36,8 @@ export const ProjectDetails = () => {
 
       {/* Descrição */}
       <p className="text-gray-400 text-center max-w-[640px] my-4 sm:my-6 text-sm sm:text-base">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-        repellendus, dicta excepturi dolores itaque animi ducimus repellat sed
-        veniam id.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur repellendus, dicta
+        excepturi dolores itaque animi ducimus repellat sed veniam id.
       </p>
 
       <div className="w-ful mad-w-[330px] flex flex-wrap gap-2 items-center justify-center">

@@ -32,15 +32,12 @@ export const ExperienceItem = () => {
           <span className="text-gray-500">out 2022 - 0 momento - (6meses)</span>
 
           <p className="text-gray-400">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, a.
-            Dolorem maiores ea alias distinctio quidem earum vitae, delectus
-            eligendi.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, a. Dolorem maiores ea
+            alias distinctio quidem earum vitae, delectus eligendi.
           </p>
         </div>
 
-        <p className="text-gray-400 text-sm mb-3 mt-6 font-semibold">
-          Competências
-        </p>
+        <p className="text-gray-400 text-sm mb-3 mt-6 font-semibold">Competências</p>
         <div className="flex gap-x-2 gap-y-3 flex-wrap lg:max-3-[350px] mb-8">
           <TechBadge name="React" />
           <TechBadge name="React" />

@@ -13,7 +13,7 @@ export const KnowTechs = () => {
           tech={{
             icon: <TbBrandNextjs />,
             name: 'Next.js',
-            startDate: '2021-01-01',
+            startDate: '2021-01-01'
           }}
         />
         <KnowTech
@@ -21,7 +21,7 @@ export const KnowTechs = () => {
           tech={{
             icon: <TbBrandReact />,
             name: 'React',
-            startDate: '2019-05-01',
+            startDate: '2019-05-01'
           }}
         />
         <KnowTech
@@ -29,7 +29,7 @@ export const KnowTechs = () => {
           tech={{
             icon: <TbBrandJavascript />,
             name: 'JavaScript',
-            startDate: '2018-09-01',
+            startDate: '2018-09-01'
           }}
         />
       </div>

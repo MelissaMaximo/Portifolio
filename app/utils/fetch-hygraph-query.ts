@@ -4,12 +4,12 @@ export const fetchHygraphQuery = async (query: string) => {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`,
+      Authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`
     },
     body: JSON.stringify({ query }),
     next: {
-      revalidate: 60 * 60 * 24,
-    },
+      revalidate: 60 * 60 * 24
+    }
   })
 
   const { data } = await response.json()

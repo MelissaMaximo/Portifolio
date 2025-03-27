@@ -19,8 +19,8 @@ export const ProjectCard = () => {
           BookWise
         </strong>
         <p className="mt-2 text-gray-400 line-clqmp-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo illum in
-          eum veritatis saepe laboriosam libero eaque, animi perferendis fugiat.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo illum in eum veritatis saepe
+          laboriosam libero eaque, animi perferendis fugiat.
         </p>
         <span className="text-gray-300 text-sm font-medium block mt-auto truncate">
           React, React, React, React, React{' '}

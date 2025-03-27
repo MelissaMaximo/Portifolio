@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 // Certifique-se de definir ou importar fadeUpAnimation corretamente
 const fadeUpAnimation = {
   initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
+  animate: { opacity: 1, y: 0 }
 }
 
 export const ProjectsList = () => {

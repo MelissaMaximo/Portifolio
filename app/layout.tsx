@@ -7,13 +7,13 @@ import { Footer } from './components/footer'
 
 const inter = Inter({
   variable: '--font-inter',
-  subsets: ['latin'],
+  subsets: ['latin']
 })
 
 const plexMono = IBM_Plex_Mono({
   variable: '--font-plex-mono',
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '500']
 })
 
 export default function RootLayout({ children }: { children: ReactNode }) {

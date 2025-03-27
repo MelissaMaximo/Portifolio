@@ -12,8 +12,8 @@ export const PageIntroduction = () => {
       />
       <div className="flex flex-col items-center">
         <p className="text-gray-400 text-center max-w-[640px] my-6 text-sm sm:text-base">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-          consequuntur officia, veritatis quisquam quis consequatur.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus consequuntur
+          officia, veritatis quisquam quis consequatur.
         </p>
 
         <Link href={'/'}>

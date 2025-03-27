@@ -18,22 +18,16 @@ export const ProjectCard = () => {
 
       <div>
         <h3 className="flex item-center gap-3 font-medium tect-lg text-gray-50">
-          <Image
-            width={20}
-            height={20}
-            alt=""
-            src="/image/icons/projec-title-icon.svg"
-          />
+          <Image width={20} height={20} alt="" src="/image/icons/projec-title-icon.svg" />
           BookWise
         </h3>
 
         <p className="text-gray-400 my-6">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam
-          tempore ut consectetur eius eos tempora commodi odio amet iusto,
-          asperiores accusamus facere soluta, recusandae dignissimos earum
-          maiores eum eveniet, vel error. Veritatis voluptas labore delectus
-          asperiores et eum incidunt animi similique adipisci! Ut eius error
-          assumenda excepturi aspernatur repellendus quidem!
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam tempore ut consectetur
+          eius eos tempora commodi odio amet iusto, asperiores accusamus facere soluta, recusandae
+          dignissimos earum maiores eum eveniet, vel error. Veritatis voluptas labore delectus
+          asperiores et eum incidunt animi similique adipisci! Ut eius error assumenda excepturi
+          aspernatur repellendus quidem!
         </p>
 
         <div className="flex gap-x-2 gap-y-3 flex-wrap mb-8 lg:max-w-[350]">

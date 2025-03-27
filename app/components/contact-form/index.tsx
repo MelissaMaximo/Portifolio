@@ -11,14 +11,14 @@ import axios from 'axios'
 const ContactFormSchema = z.object({
   name: z.string().min(3).max(100),
   email: z.string().email(),
-  message: z.string().min(1).max(500),
+  message: z.string().min(1).max(500)
 })
 
 type ContactFormData = z.infer<typeof ContactFormSchema>
 
 export const ContactForm = () => {
   const { handleSubmit, register, reset } = useForm<ContactFormData>({
-    resolver: zodResolver(ContactFormSchema),
+    resolver: zodResolver(ContactFormSchema)
   })
 
   const onSubmit = async (data: ContactFormData) => {
@@ -42,10 +42,7 @@ export const ContactForm = () => {
           className="items-center text-center"
         />
 
-        <form
-          className="mt-12 w-full flex flex-col gap-4"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="mt-12 w-full flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <input
             placeholder="Nome"
             className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"

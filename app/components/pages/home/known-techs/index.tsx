@@ -14,39 +14,33 @@ export const KnowTechs = () => {
           tech={{
             icon: <TbBrandNextjs />,
             name: 'Next.js',
-            startDate: '2025-02-01',
+            startDate: '2025-02-01'
           }}
         />
         <KnowTech
           tech={{
             icon: <TbBrandReact />,
             name: 'React',
-            startDate: '2025-01-01',
+            startDate: '2025-01-01'
           }}
         />
-        <KnowTech
-          tech={{ icon: <FaJava />, name: 'Java', startDate: '2024-01-01' }}
-        />
+        <KnowTech tech={{ icon: <FaJava />, name: 'Java', startDate: '2024-01-01' }} />
         <KnowTech
           tech={{
             icon: <TbBrandJavascript />,
             name: 'JavaScript',
-            startDate: '2023-01-01',
+            startDate: '2023-01-01'
           }}
         />
-        <KnowTech
-          tech={{ icon: <FaCss3 />, name: 'CSS', startDate: '2023-01-01' }}
-        />
+        <KnowTech tech={{ icon: <FaCss3 />, name: 'CSS', startDate: '2023-01-01' }} />
         <KnowTech
           tech={{
             icon: <FaNodeJs />,
             name: 'Node.js',
-            startDate: '2025-01-01',
+            startDate: '2025-01-01'
           }}
         />
-        <KnowTech
-          tech={{ icon: <DiMysql />, name: 'MySQL', startDate: '2024-01-01' }}
-        />
+        <KnowTech tech={{ icon: <DiMysql />, name: 'MySQL', startDate: '2024-01-01' }} />
       </div>
     </section>
   )

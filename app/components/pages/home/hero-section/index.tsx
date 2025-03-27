@@ -5,31 +5,26 @@ import { TechBadge } from '@/app/components/tech-badge'
 import { HomePageInfo } from '@/app/types/page-info'
 import Image from 'next/image'
 import { HiArrowNarrowRight } from 'react-icons/hi'
-import {
-  TbBrandGithub,
-  TbBrandLinkedin,
-  TbBrandYoutube,
-  TbBrandWhatsapp,
-} from 'react-icons/tb'
+import { TbBrandGithub, TbBrandLinkedin, TbBrandYoutube, TbBrandWhatsapp } from 'react-icons/tb'
 import { motion } from 'framer-motion'
 
 export const metadata = {
-  title: 'Home',
+  title: 'Home'
 }
 
 const MOCK_CONTACTS = [
   {
     url: 'https://github.com/MelissaMaximo',
-    icon: <TbBrandGithub />,
+    icon: <TbBrandGithub />
   },
   {
     url: 'https://www.linkedin.com/in/melissa-m%C3%A1ximo-8404b1328/',
-    icon: <TbBrandLinkedin />,
+    icon: <TbBrandLinkedin />
   },
   {
     url: 'https://wa.me/5512997516865',
-    icon: <TbBrandWhatsapp />,
-  },
+    icon: <TbBrandWhatsapp />
+  }
 ]
 
 type HomeSectionProps = {
@@ -60,13 +55,12 @@ export const HeroSection = ({ homeInfo }: HomeSectionProps) => {
           <h2 className="text-4xl font-medium mt-2">Melissa Máximo</h2>
 
           <p className="text-gray-400 my-6 text-sm sm:text-base">
-            Sou desenvolvedora de software com paixão por criar soluções
-            inovadoras e eficientes. Com experiência em diversas tecnologias,
-            minha jornada me levou a explorar tanto o front-end quanto o
-            back-end, sempre focada em construir interfaces intuitivas e
-            sistemas robustos. Ao longo dos anos, aprendi a importância de
-            escrever códigos limpos e escaláveis, além de colaborar com equipes
-            multidisciplinares para entregar projetos de alto impacto.
+            Sou desenvolvedora de software com paixão por criar soluções inovadoras e eficientes.
+            Com experiência em diversas tecnologias, minha jornada me levou a explorar tanto o
+            front-end quanto o back-end, sempre focada em construir interfaces intuitivas e sistemas
+            robustos. Ao longo dos anos, aprendi a importância de escrever códigos limpos e
+            escaláveis, além de colaborar com equipes multidisciplinares para entregar projetos de
+            alto impacto.
           </p>
 
           <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">

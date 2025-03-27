@@ -4,7 +4,7 @@ import { KnowTechs } from './components/pages/home/known-techs'
 import { HomePageInfo } from '@/app/types/page-info'
 
 export const metadata = {
-  title: 'Home',
+  title: 'Home'
 }
 
 export default function Home() {
@@ -13,14 +13,14 @@ export default function Home() {
       <HeroSection
         homeInfo={{
           introduction: {
-            raw: '',
+            raw: ''
           },
           technologies: [],
           profilePicture: {
-            url: '',
+            url: ''
           },
           socials: [],
-          knowTechs: [],
+          knowTechs: []
         }}
       />
       <KnowTechs />
