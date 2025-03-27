@@ -1,6 +1,6 @@
 export const eslint = {
-  ignoreDuringBuilds: true, // Desativa o ESLint durante o build
-};
+  ignoreDuringBuilds: true
+}
 export const typescript = {
-  ignoreBuildErrors: true, // (Opcional) Desativa erros do TypeScript
-};
+  ignoreBuildErrors: true
+}

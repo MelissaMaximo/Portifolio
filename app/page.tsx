@@ -2,6 +2,7 @@ import { HeroSection } from './components/pages/home/hero-section'
 import { Highlightedprojects } from './components/pages/home/highlighted-projects'
 import { KnowTechs } from './components/pages/home/known-techs'
 import { HomePageInfo } from '@/app/types/page-info'
+import '../app/globals.css'
 
 export const metadata = {
   title: 'Home'
