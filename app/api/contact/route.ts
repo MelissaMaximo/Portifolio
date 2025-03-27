@@ -1,68 +1,56 @@
+// route.ts
 import { NextResponse } from 'next/server'
-import { z } from 'zod'
 
-const contactSchema = z.object({
-  name: z.string().min(3, 'Nome muito curto (mínimo 3 caracteres)'),
-  email: z.string().email('E-mail inválido'),
-  message: z.string().min(10, 'Mensagem muito curta (mínimo 10 caracteres)')
-})
+export async function POST(request: Request) {
+  const webhookUrl = process.env.DISCORD_WEBHOOK_URL
 
-export async function POST(req: Request) {
+  if (!webhookUrl) {
+    return NextResponse.json({ error: 'Webhook não configurado no servidor' }, { status: 500 })
+  }
+
   try {
-    // 1. Validar os dados recebidos
-    const body = await req.json()
-    const { name, email, message } = contactSchema.parse(body)
+    const body = await request.json()
 
-    // 2. Enviar para o Discord
-    const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL
-    if (!discordWebhookUrl) {
-      throw new Error('Webhook do Discord não configurado')
-    }
-
-    const discordPayload = {
-      embeds: [
-        {
-          title: 'Novo Contato Recebido',
-          color: 0x0099ff,
-          fields: [
-            { name: 'Nome', value: name },
-            { name: 'E-mail', value: email },
-            { name: 'Mensagem', value: message }
-          ],
-          timestamp: new Date().toISOString()
-        }
-      ]
-    }
-
-    const discordResponse = await fetch(discordWebhookUrl, {
+    const discordResponse = await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(discordPayload)
+      body: JSON.stringify({
+        content: '📬 Nova mensagem do formulário de contato!',
+        embeds: [
+          {
+            title: `Mensagem de ${body.name}`,
+            description: body.message,
+            fields: [
+              {
+                name: 'Email',
+                value: body.email,
+                inline: true
+              }
+            ],
+            color: 0x00ff00,
+            timestamp: new Date().toISOString()
+          }
+        ]
+      })
     })
 
     if (!discordResponse.ok) {
-      throw new Error('Falha ao enviar mensagem para o Discord')
+      throw new Error('Falha ao enviar para o Discord')
     }
 
-    // 3. Retornar sucesso
-    return NextResponse.json(
-      { success: true, message: 'Mensagem enviada com sucesso!' },
-      { status: 200 }
-    )
+    return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Erro no processamento:', error)
-
-    // 4. Tratar diferentes tipos de erro
-    let errorMessage = 'Erro interno do servidor'
-    let statusCode = 500
-
-    if (error instanceof z.ZodError) {
-      errorMessage = error.errors.map((e) => e.message).join(', ')
-      statusCode = 400
-    } else if (error instanceof Error) {
-      errorMessage = error.message
-    }
-
-    return NextResponse.json({ success: false, error: errorMessage }, { status: statusCode })
+    return NextResponse.json(
+      {
+        error: 'Erro ao processar a mensagem',
+        details: error instanceof Error ? error.message : String(error)
+      },
+      { status: 500 }
+    )
   }
+}
+
+// Keep your existing GET handler for testing
+export async function GET() {
+  // ... existing test code ...
 }

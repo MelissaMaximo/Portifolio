@@ -7,26 +7,48 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 const ContactFormSchema = z.object({
-  name: z.string().min(3).max(100),
-  email: z.string().email(),
-  message: z.string().min(1).max(500)
+  name: z.string().min(3, 'Nome precisa ter pelo menos 3 caracteres'),
+  email: z.string().email('Por favor, insira um e-mail válido'),
+  message: z.string().min(10, 'A mensagem precisa ter pelo menos 10 caracteres').max(500)
 })
 
 type ContactFormData = z.infer<typeof ContactFormSchema>
 
 export const ContactForm = () => {
-  const { handleSubmit, register, reset } = useForm<ContactFormData>({
+  const [isLoading, setIsLoading] = useState(false)
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors }
+  } = useForm<ContactFormData>({
     resolver: zodResolver(ContactFormSchema)
   })
 
   const onSubmit = async (data: ContactFormData) => {
+    setIsLoading(true)
     try {
-      await axios.post('/api/contact', data)
-      reset()
-    } catch {
-      alert('erro')
+      const response = await axios.post('/api/contact', data)
+
+      if (response.data.success) {
+        toast.success('Mensagem enviada com sucesso!')
+        reset()
+      } else {
+        throw new Error(response.data.error || 'Erro ao enviar mensagem')
+      }
+    } catch (error) {
+      console.error('Erro no envio:', error)
+      toast.error(
+        axios.isAxiosError(error)
+          ? error.response?.data?.error || 'Erro ao enviar mensagem'
+          : 'Falha na conexão'
+      )
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -43,29 +65,44 @@ export const ContactForm = () => {
         />
 
         <form className="mt-12 w-full flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-          <input
-            placeholder="Nome"
-            className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
-            {...register('name')}
-          />
+          <div>
+            <input
+              placeholder="Nome"
+              className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
+              {...register('name')}
+            />
+            {errors.name && (
+              <span className="text-red-400 text-sm mt-1 block">{errors.name.message}</span>
+            )}
+          </div>
 
-          <input
-            placeholder="E-mail"
-            type="email"
-            className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
-            {...register('email')}
-          />
+          <div>
+            <input
+              placeholder="E-mail"
+              type="email"
+              className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
+              {...register('email')}
+            />
+            {errors.email && (
+              <span className="text-red-400 text-sm mt-1 block">{errors.email.message}</span>
+            )}
+          </div>
 
-          <textarea
-            placeholder="Mensagem"
-            className=" resize-none w-full h-[138px] bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
-            maxLength={500}
-            {...register('message')}
-          />
+          <div>
+            <textarea
+              placeholder="Mensagem"
+              className="resize-none w-full h-[138px] bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
+              maxLength={500}
+              {...register('message')}
+            />
+            {errors.message && (
+              <span className="text-red-400 text-sm mt-1 block">{errors.message.message}</span>
+            )}
+          </div>
 
-          <Button className="w-max mx-auto mt-6 shadow-button">
-            Enviar Mensagem
-            <HiArrowNarrowRight size={18} />
+          <Button className="w-max mx-auto mt-6 shadow-button" disabled={isLoading}>
+            {isLoading ? 'Enviando...' : 'Enviar Mensagem'}
+            {!isLoading && <HiArrowNarrowRight size={18} />}
           </Button>
         </form>
       </div>
