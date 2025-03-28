@@ -6,7 +6,6 @@ import { Button } from '../button'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import axios from 'axios'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -32,21 +31,24 @@ export const ContactForm = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsLoading(true)
     try {
-      const response = await axios.post('/api/contact', data)
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
 
-      if (response.data.success) {
-        toast.success('Mensagem enviada com sucesso!')
-        reset()
-      } else {
-        throw new Error(response.data.error || 'Erro ao enviar mensagem')
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || 'Erro ao enviar mensagem')
       }
+
+      toast.success('Mensagem enviada com sucesso!')
+      reset()
     } catch (error) {
       console.error('Erro no envio:', error)
-      toast.error(
-        axios.isAxiosError(error)
-          ? error.response?.data?.error || 'Erro ao enviar mensagem'
-          : 'Falha na conexão'
-      )
+      toast.error(error instanceof Error ? error.message : 'Falha na conexão')
     } finally {
       setIsLoading(false)
     }
@@ -70,6 +72,7 @@ export const ContactForm = () => {
               placeholder="Nome"
               className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
               {...register('name')}
+              disabled={isLoading}
             />
             {errors.name && (
               <span className="text-red-400 text-sm mt-1 block">{errors.name.message}</span>
@@ -82,6 +85,7 @@ export const ContactForm = () => {
               type="email"
               className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
               {...register('email')}
+              disabled={isLoading}
             />
             {errors.email && (
               <span className="text-red-400 text-sm mt-1 block">{errors.email.message}</span>
@@ -94,13 +98,19 @@ export const ContactForm = () => {
               className="resize-none w-full h-[138px] bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
               maxLength={500}
               {...register('message')}
+              disabled={isLoading}
             />
             {errors.message && (
               <span className="text-red-400 text-sm mt-1 block">{errors.message.message}</span>
             )}
           </div>
 
-          <Button className="w-max mx-auto mt-6 shadow-button" disabled={isLoading}>
+          <Button
+            type="submit"
+            className="w-max mx-auto mt-6 shadow-button"
+            disabled={isLoading}
+            aria-disabled={isLoading}
+          >
             {isLoading ? 'Enviando...' : 'Enviar Mensagem'}
             {!isLoading && <HiArrowNarrowRight size={18} />}
           </Button>

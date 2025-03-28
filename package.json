@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-      "start": "next start",
+    "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write --ignore-unknown \"**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
     "format:force": "prettier --write --no-error-on-unmatched-pattern --ignore-unknown \"**/*\"",
-    "prepare": "npm run format"
+    "prepare": "npm run format",
+    "type": "module"
   },
   "dependencies": {
     "@graphcms/rich-text-react-renderer": "0.6.1",

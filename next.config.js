@@ -4,10 +4,12 @@ const nextConfig = {
   images: {
     domains: ['media.graphassets.com']
   },
+  // Configurações experimentais atualizadas:
   experimental: {
-    appDir: true,
-    serverComponentsExternalPackages: ['@prisma/client']
+    serverActions: true // Adicione apenas se estiver usando Server Actions
   },
+  // Mover para fora do experimental:
+  serverExternalPackages: ['@prisma/client'],
   eslint: {
     ignoreDuringBuilds: true
   },
@@ -16,6 +18,4 @@ const nextConfig = {
   }
 }
 
-// Use apenas UM dos exports abaixo (não ambos)
 export default nextConfig
-// OU module.exports = nextConfig (para CommonJS)
