@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { NextResponse } from 'next/server'
 
 export async function OPTIONS() {
@@ -12,13 +13,12 @@ export async function OPTIONS() {
 }
 
 export async function POST(request: Request) {
-  const webhookUrl = process.env.DISCORD_WEBHOOK_URL
+  const webhookUrl = process.env.WEBHOOK_URL
 
-  if (!webhookUrl) {
-    return NextResponse.json(
-      { error: 'Webhook não configurado' },
-      { status: 500, headers: { 'Access-Control-Allow-Origin': '*' } }
-    )
+
+  if (!webhookUrl?.startsWith('https://discord.com/api/webhooks/')) {
+    console.error('Webhook inválido:', webhookUrl)
+    return NextResponse.json({ error: 'Configuração do servidor incompleta' }, { status: 500 })
   }
 
   try {
